@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हवामान मापणी</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<style>
+    .find {
+        padding-bottom: 3rem;
+    }
+
+    .find .row {
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 2rem;
+        border: .1rem solid rgba(0, 0, 0, .1);
+        overflow: hidden;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    }
+
+    .find .row .image {
+        flex: 1 1 40rem;
+    }
+
+    .find .row .image img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .find .row form {
+        flex: 1 1 40rem;
+        padding: 4rem;
+    }
+
+    .find .row form .inputBox {
+        padding: 1rem 0;
+
+    }
+
+    .find .row form .inputBox input[type="text"] {
+        box-shadow: 0 .2rem .8rem rgba(0, 0, 0, .3);
+        padding: 1.2rem;
+        border-radius: 10px;
+    }
+
+    .find .row form .inputBox h3 {
+        color: var(--green);
+        padding: .5rem 0;
+        font-size: 2rem;
+    }
+
+    .find .row form #result {
+        text-align: start;
+        margin: 4rem;
+        font-size: 1.5rem;
+    }
+
+    .find .row form .btn {
+        margin-bottom: 3rem;
+    }
+
+    @media (max-width:400px) {
+        .find .row form {
+            text-align: center;
+        }
+
+    }
+</style>
+
+<body>
+
+    <div class="loader"></div>
+
+    <header>
+        <a href="index.html" class="logo"><img src="images/log.jpg" alt=""></a>
+        <div id="menu" class="fas fa-bars"></div>
+
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="index.html">crop</a>
+            <a href="index.html">about</a>
+            <a href="index.html">season</a>
+            <a href="#footer">contact</a>
+        </nav>
+    </header>
+
+    <section class="find" id="find">
+
+        <h1 class="heading">crop finder by season</h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="images/form.jpg" alt="">
+            </div>
+
+            <form onsubmit="findCrops(); return false;">
+
+                <div class="inputBox">
+                    <h3>Season Name</h3>
+                    <input type="text" id="season" placeholder="enter season">
+                </div>
+
+                <input type="submit" value="find crop" class="btn">
+
+                <input type="reset" value="reset field" class="btn">
+                <div id="result"></div>
+            </form>
+        </div>
+    </section>
+
+    <section class="footer" id="footer">
+
+        <div class="box-container">
+            <div class="box">
+                <h3>contact details</h3>
+                <p> <i class="fas fa-phone"></i> +123-456-7890. </p>
+                <p> <i class="fas fa-envelope"></i> example@gmail.com </p>
+                <p> <i class="fas fa-map-marker-alt"></i> mumbai, indai - 400104. </p>
+            </div>
+        </div>
+
+        <h1 class="credit"> created by <span>group no 7</span> | all rights reserved! </h1>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script src="load.js"></script>
+</body>
+
+</html>
