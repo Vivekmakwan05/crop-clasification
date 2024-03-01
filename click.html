@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>हवामान मापणी</title>
-
+    <link rel="icon" type="image/x-icon" href="/images/icon-leaf.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -66,6 +66,39 @@
     .find .row form .btn {
         margin-bottom: 3rem;
     }
+    header .navbar  ul{
+        list-style: none;
+    }
+    header .navbar ul li{
+        display: inline-block;
+        position: relative;
+    }
+    ul li a{
+        display: block;
+        padding: 1rem;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    ul li ul.dropdown li{
+        display: block;
+    }
+
+    ul li ul.dropdown{
+        width: 100%;
+        background-color: #f0f0f0;
+        position:absolute;
+        z-index: 999;
+        margin-left: 2rem;
+        display: none;
+        border-radius: 10px;
+    }
+    ul li a:hover{
+       color: #0c5e6a;
+    }
+    ul li:hover ul.dropdown{
+        display: block;
+    }
 
     @media (max-width:400px) {
         .find .row form {
@@ -84,11 +117,19 @@
         <div id="menu" class="fas fa-bars"></div>
 
         <nav class="navbar">
-            <a href="index.html">home</a>
-            <a href="index.html">crop</a>
-            <a href="index.html">about</a>
-            <a href="index.html">season</a>
+            <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="index.html">crop</a></li>
+            <li><a href="index.html">about</a></li>
+            <li><a href="#season">season</a>
+                <ul class="dropdown">
+                    <li><a href="rabi.html">Rabi Season</a></li>
+                    <li><a href="zaid.html">Zaid Season</a></li>
+                    <li><a href="kharif.html">Kharif Season</a></li>
+                </ul>
+            </li>
             <a href="#footer">contact</a>
+            </ul>
         </nav>
     </header>
 
