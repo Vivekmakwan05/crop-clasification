@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>हवामान मापणी</title>
-    <link rel="icon" type="image/x-icon" href="./icon-leaf.png">
+    <link rel="icon" type="image/x-icon" href="./wicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -41,7 +41,7 @@
     }
 
     .find .row form .inputBox {
-        padding: 1rem 0;
+        padding: 0;
 
     }
 
@@ -66,45 +66,88 @@
     .find .row form .btn {
         margin-bottom: 3rem;
     }
-    header .navbar  ul{
+
+    header .navbar ul {
         list-style: none;
     }
-    header .navbar ul li{
+
+    header .navbar ul li {
         display: inline-block;
         position: relative;
     }
-    ul li a{
+
+    ul li a {
         display: block;
         padding: 1rem;
         text-decoration: none;
         text-align: center;
     }
 
-    ul li ul.dropdown li{
+    ul li ul.dropdown li {
         display: block;
     }
 
-    ul li ul.dropdown{
+    ul li ul.dropdown {
         width: 100%;
         background-color: #f0f0f0;
-        position:absolute;
+        position: absolute;
         z-index: 999;
         margin-left: 2rem;
         display: none;
         border-radius: 10px;
     }
-    ul li a:hover{
-       color: #0c5e6a;
+
+    ul li a:hover {
+        color: #0c5e6a;
     }
-    ul li:hover ul.dropdown{
+
+    ul li:hover ul.dropdown {
         display: block;
+    }
+
+    .result{
+        padding: 1rem;
+    }
+    p#cropDescription, #cropClimate, #cropSoil,
+    #cropScientificName, #cropColor, #cropShapesize, 
+    #cropUse, #cropBenefits, #cropGrowsin{
+        font-size: 13.8px;
+        margin: 5px;
+    }
+    #cropDetails{
+        text-align: justify;
+    }
+    #seasonSelect, #cropSelect{
+        padding: 5.6px;
+        font-size: 14px;
+        border: 1px solid #aaa;
+        border-radius: 10px;
+    }
+    #seasonSelect, #cropSelect:hover{
+        cursor: pointer;
+    }
+    #cropImage{
+        width: 28%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     @media (max-width:400px) {
         .find .row form {
             text-align: center;
+            padding: 1rem;
+            padding-top: 2rem;
         }
+        #seasonSelect, #cropSelect
+        {
+        
+        font-size: 13px;
 
+        }
+        #cropDetails{
+        margin-top: 3rem;
+    }
     }
 </style>
 
@@ -113,48 +156,99 @@
     <div class="loader"></div>
 
     <header>
-        <a href="index.html" class="logo"><img src="./log.jpg" alt=""></a>
+        <a href="index.html" class="logo"><img src="./log1.jpg" alt=""></a>
         <div id="menu" class="fas fa-bars"></div>
 
         <nav class="navbar">
             <ul>
-            <li><a href="index.html">home</a></li>
-            <li><a href="index.html">crop</a></li>
-            <li><a href="index.html">about</a></li>
-            <li><a href="#season">season</a>
-                <ul class="dropdown">
-                    <li><a href="rabi.html">Rabi Season</a></li>
-                    <li><a href="zaid.html">Zaid Season</a></li>
-                    <li><a href="kharif.html">Kharif Season</a></li>
-                </ul>
-            </li>
-            <a href="#footer">contact</a>
+                <li><a href="index.html">home</a></li>
+                <li><a href="finder.html">crop-finder</a></li>
+                <li><a href="index.html">about</a></li>
+                <li><a href="seasons.html">season</a>
+                    <ul class="dropdown">
+                        <li><a href="rainy.html">Rainy Season</a></li>
+                        <li><a href="summer.html">Summer Season</a></li>
+                        <li><a href="winter.html">Winter Season</a></li>
+                    </ul>
+                </li>
+                <a href="#footer">contact</a>
             </ul>
         </nav>
     </header>
 
     <section class="find" id="find">
 
-        <h1 class="heading">crop finder by season</h1>
+        <h1 class="heading">crop finder by season</h1><br><br>
 
         <div class="row">
 
             <div class="image">
-                <img src="./form.jpg" alt="">
+                <img src="./find.jfif" alt="">
             </div>
 
-            <form onsubmit="findCrops(); return false;">
+            <form >
 
                 <div class="inputBox">
                     <h3>Season Name</h3>
-                    <input type="text" id="season" placeholder="enter season">
+              
+
+                 <select id="seasonSelect" onchange="updateCropOptions()">
+                        <option value="" disabled selected>Select a season</option>
+                        <option value="Rainy">Rainy</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Winter">Winter</option>
+                    </select>
+
+                    <h3>Crop Name</h3>
+                    <select id="cropSelect" onchange="showCropDetails()">
+                        <option value="" disabled selected>Select a crop</option>
+                    </select>
+
+                    <div class="result">
+                        <div id="cropDetails">
+                            <img id="cropImage">
+                            <h3 id="cropName" style="text-align: center;"></h3>
+                            <p id="cropDescription"></p>
+                            <p id="cropColor"></p>
+                            <p id="cropScientificName"></p>
+                            <p id="cropShapesize"></p>
+                            <p id="cropSoil"></p>
+                            <p id="cropClimate"></p>
+                            <p id="cropUse"></p>
+                            <p id="cropGrowsin"></p>
+                            <p id="cropBenefits"></p>
+                        </div>
+                    </div>
                 </div>
-
-                <input type="submit" value="find crop" class="btn">
-
-                <input type="reset" value="reset field" class="btn">
-                <div id="result"></div>
+                                                  
             </form>
+            <!-- 
+            <div class="inputBox">
+
+                    <h3>Season Name</h3>
+                    <select id="seasonSelect" onchange="updateCropOptions()">
+                        <option value="" disabled selected>Select a season</option>
+                        <option value="spring">Spring</option>
+                        <option value="summer">Summer</option>
+                        <option value="fall">Fall</option>
+                        <option value="winter">Winter</option>
+                    </select>
+
+                    <h3>Season Name</h3>
+                    <select id="cropSelect" onchange="showCropDetails()">
+                        <option value="" disabled selected>Select a crop</option>
+                    </select>
+
+                    <div class="result">
+                    <h1>Crop Finder</h1>
+                    <div id="cropDetails">
+                        <h2 id="cropName"></h2>
+                        <p id="cropDescription"></p>
+                        <p id="cropClimate"></p>
+                        <p id="cropSoil"></p>
+                    </div>
+                    </div>
+            </div> -->
         </div>
     </section>
 
